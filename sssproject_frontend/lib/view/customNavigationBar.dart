@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:sssproject_frontend/const/custom_icons_icons.dart';
+import 'package:sssproject_frontend/const/colors.dart';
+import 'package:sssproject_frontend/view/homScreen.dart';
 
-class NavigationBar extends StatefulWidget {
-  const NavigationBar({super.key});
+class customNavigationBar extends StatefulWidget {
+  const customNavigationBar({super.key});
 
   @override
-  State<NavigationBar> createState() => _NavigationBarState();
+  State<customNavigationBar> createState() => _customNavigationBarState();
 }
 
-class _NavigationBarState extends State<NavigationBar> with TickerProviderStateMixin{
+class _customNavigationBarState extends State<customNavigationBar> with TickerProviderStateMixin{
   late TabController _tabController;
   int _index = 0 ;
 
@@ -37,6 +38,11 @@ class _NavigationBarState extends State<NavigationBar> with TickerProviderStateM
     return 
     Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: textBlack,
+        unselectedItemColor: textBlack,
+        selectedLabelStyle: const TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
         onTap: (int index) {
           _tabController.animateTo(index);
         },
@@ -49,15 +55,17 @@ class _NavigationBarState extends State<NavigationBar> with TickerProviderStateM
               label: item.label,
             );
           }).toList(),
+          showUnselectedLabels: true,
         ),
       body: TabBarView(
         physics: const NeverScrollableScrollPhysics(),
         controller: _tabController,
         children: const [
-          // HomePage(),
-          // SchedulePage(),
-          // Center(child: Text('채팅')),
-          // Center(child: Text('My')),
+          Center(child: Text('검색페이지'),),
+          Center(child: Text('권한설정'),),
+          HomeScreen(),
+          Center(child: Text('이미지 노이즈'),),
+          Center(child: Text('신고'),)
         ],
       ),
     );
@@ -81,32 +89,32 @@ class NavItem {
 const _navItems = [
   NavItem(
     index: 0,
-    activeIcon: CustomIcons.shieldSearch,
-    inactiveIcon: CustomIcons.shieldSearch,
+    activeIcon: Icons.policy,
+    inactiveIcon: Icons.policy,
     label: '검색',
   ),
   NavItem(
     index: 1,
-    activeIcon: CustomIcons.unlock,
-    inactiveIcon: CustomIcons.unlock,
+    activeIcon: Icons.lock,
+    inactiveIcon: Icons.lock,
     label: '권한설정',
   ),
   NavItem(
     index: 2,
-    activeIcon: CustomIcons.home,
-    inactiveIcon: CustomIcons.home,
+    activeIcon: Icons.home,
+    inactiveIcon: Icons.home,
     label: '홈',
   ),
   NavItem(
     index: 3,
-    activeIcon: CustomIcons.scanBarcode,
-    inactiveIcon: CustomIcons.scanBarcode,
+    activeIcon: Icons.crop_free,
+    inactiveIcon: Icons.crop_free,
     label: '노이즈 추가',
   ),
     NavItem(
     index: 4,
-    activeIcon: CustomIcons.alarm,
-    inactiveIcon: CustomIcons.alarm,
+    activeIcon: Icons.warning,
+    inactiveIcon: Icons.warning,
     label: '신고',
   ),
 ];
