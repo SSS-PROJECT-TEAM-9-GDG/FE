@@ -40,26 +40,55 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: textBlack,
-        unselectedItemColor: textBlack,
-        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold,),
-        onTap: (int index) {
-          changeTab(index);
-        },
-        currentIndex: _index,
-          items: _navItems.map((item) {
-            return BottomNavigationBarItem(
-              icon: Icon(
-                _index == item.index ? item.activeIcon : item.inactiveIcon,
-              ),
-              label: item.label,
-            );
-          }).toList(),
-          showUnselectedLabels: true,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: textGray.withOpacity(0.2),
+            blurRadius: 15,
+            offset: const Offset(0, -4),
+            ),
+          ],
         ),
+          child: Stack(
+          children : [
+            BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: textBlack,
+            unselectedItemColor: textGray,
+            onTap: (int index) {
+              changeTab(index);
+            },
+            currentIndex: _index,
+              items: _navItems.map((item) {
+                return BottomNavigationBarItem(
+                  icon: Icon(
+                    _index == item.index ? item.activeIcon : item.inactiveIcon,
+                    size: 30,
+                    weight: 1.0,
+                  ),
+                  label: item.label,
+                );
+              }).toList(),
+              showUnselectedLabels: true,
+            ),
+            Positioned(
+              top: 0,
+              left: MediaQuery.of(context).size.width / _navItems.length * _index + 12,
+              child: Container(
+                width: 56,
+                height: 3,
+                decoration: BoxDecoration(
+                  color: darkBlue,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+
       body: TabBarView(
-        physics: const NeverScrollableScrollPhysics(),
         controller: _tabController,
         children: [
           const Center(child: Text('검색페이지'),),
@@ -90,20 +119,20 @@ class NavItem {
 const _navItems = [
   NavItem(
     index: 0,
-    activeIcon: Icons.policy,
-    inactiveIcon: Icons.policy,
+    activeIcon: Icons.policy_outlined,
+    inactiveIcon: Icons.policy_outlined,
     label: '검색',
   ),
   NavItem(
     index: 1,
-    activeIcon: Icons.lock,
-    inactiveIcon: Icons.lock,
+    activeIcon: Icons.lock_outline,
+    inactiveIcon: Icons.lock_outline,
     label: '권한설정',
   ),
   NavItem(
     index: 2,
-    activeIcon: Icons.home,
-    inactiveIcon: Icons.home,
+    activeIcon: Icons.home_outlined,
+    inactiveIcon: Icons.home_outlined,
     label: '홈',
   ),
   NavItem(
@@ -114,8 +143,8 @@ const _navItems = [
   ),
     NavItem(
     index: 4,
-    activeIcon: Icons.warning,
-    inactiveIcon: Icons.warning,
+    activeIcon: Icons.warning_amber,
+    inactiveIcon: Icons.warning_amber,
     label: '신고',
   ),
 ];

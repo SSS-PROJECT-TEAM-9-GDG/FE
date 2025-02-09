@@ -26,17 +26,24 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Row(
-              children: [
-              const Padding(
-                padding: EdgeInsets.all(30),
-                child: Text('안녕하세요.\n구름이가\n도와드릴게요!', 
-                            style: TextStyle(fontSize: 32),)),
-                Image.asset(
-                  'assets/images/goormCharactor.png', 
-                  width: 141, 
-                  height: 148,)
-              ],
+            Expanded(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                const Padding(
+                  padding: EdgeInsets.all(30),
+                  child: Text('안녕하세요,\n구름이가\n도와드릴게요!', 
+                              style: TextStyle(fontSize: 32, fontWeight: FontWeight.normal),)),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Image.asset(
+                    'assets/images/goormCharactor.png', 
+                    width: 141, 
+                    height: 148,
+                  ),
+                ),
+                ],
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -54,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       widget.changeTab),
               ],
             ),
+            const SizedBox(height: 16,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -70,6 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       widget.changeTab),
               ],
             ),
+            const SizedBox(height: 17,)
           ],
         ),
       ),
@@ -96,10 +105,10 @@ Widget cardButton(String imagePath, String title, String subtitle, int index, Fu
               Image.asset(imagePath, width: 60, height: 60,),
               const SizedBox(height: 30,),
               Text(title, 
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
               const SizedBox(height: 5,),
               Text(subtitle, 
-              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500, color: textGray, height: 1.8),),
+              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: textGray, height: 1.8),),
             ],
             ),
           ),
