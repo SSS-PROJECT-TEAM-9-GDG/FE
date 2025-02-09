@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/view/customNavigationBar.dart';
-import 'package:sssproject_frontend/view/homScreen.dart';
 
 void main() {
   runApp(const MyApp());

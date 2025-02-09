@@ -11,13 +11,13 @@ class customNavigationBar extends StatefulWidget {
 
 class _customNavigationBarState extends State<customNavigationBar> with TickerProviderStateMixin{
   late TabController _tabController;
-  int _index = 0 ;
+  int _index = 2 ;
 
   @override
   void initState() {
   super.initState();
 
-  _tabController = TabController(length: _navItems.length, vsync: this);
+  _tabController = TabController(length: _navItems.length, vsync: this, initialIndex: _index);
   _tabController.addListener(tabListener);
   }
 
@@ -32,19 +32,20 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
       _index = _tabController.index;
     });
   }
+
+  void changeTab(int index) {
+    _tabController.animateTo(index);
+  }
   
   @override
   Widget build(BuildContext context) {
-    return 
-    Scaffold(
+    return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: textBlack,
         unselectedItemColor: textBlack,
-        selectedLabelStyle: const TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
+        selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold,),
         onTap: (int index) {
-          _tabController.animateTo(index);
+          changeTab(index);
         },
         currentIndex: _index,
           items: _navItems.map((item) {
@@ -60,12 +61,12 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
       body: TabBarView(
         physics: const NeverScrollableScrollPhysics(),
         controller: _tabController,
-        children: const [
-          Center(child: Text('검색페이지'),),
-          Center(child: Text('권한설정'),),
-          HomeScreen(),
-          Center(child: Text('이미지 노이즈'),),
-          Center(child: Text('신고'),)
+        children: [
+          const Center(child: Text('검색페이지'),),
+          const Center(child: Text('권한설정'),),
+          HomeScreen(changeTab: changeTab),
+          const Center(child: Text('이미지 노이즈'),),
+          const Center(child: Text('신고'),)
         ],
       ),
     );
