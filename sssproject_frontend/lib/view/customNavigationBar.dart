@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/const/colors.dart';
 import 'package:sssproject_frontend/view/homScreen.dart';
+import 'package:sssproject_frontend/view/reportHelperScreen.dart';
 
 class customNavigationBar extends StatefulWidget {
   const customNavigationBar({super.key});
@@ -95,7 +96,7 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
           const Center(child: Text('권한설정'),),
           HomeScreen(changeTab: changeTab),
           const Center(child: Text('이미지 노이즈'),),
-          const Center(child: Text('신고'),)
+          const ReportHelperScreen(),
         ],
       ),
     );
