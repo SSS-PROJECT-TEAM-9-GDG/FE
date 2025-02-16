@@ -6,14 +6,14 @@ class CardButton extends StatelessWidget {
   final String imagePath;
   final String title;
   final String subtitle;
-  final int index;
+  final VoidCallback onTap; 
 
   const CardButton({
     super.key,
     required this.imagePath,
     required this.title,
     required this.subtitle,
-    required this.index,
+    required this.onTap
   });
 
   @override
@@ -26,9 +26,7 @@ class CardButton extends StatelessWidget {
         color: backgroundWhite,
         elevation: 10.0,
         child: InkWell(
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => ReportDetailScreen(index: index)),
-          ),
+          onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(

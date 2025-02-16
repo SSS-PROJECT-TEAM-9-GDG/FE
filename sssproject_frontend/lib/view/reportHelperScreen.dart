@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/const/colors.dart';
 import 'package:sssproject_frontend/view/cardButton.dart';
+import 'package:sssproject_frontend/view/reportDetailScreen.dart';
 
 class ReportHelperScreen extends StatefulWidget {
 
@@ -8,6 +9,11 @@ class ReportHelperScreen extends StatefulWidget {
 
   @override
   State<ReportHelperScreen> createState() => _ReportHelperScreenState();
+}
+
+void navigator (BuildContext context, int index) {
+  Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => ReportDetailScreen(index: index,)));
 }
 
 class _ReportHelperScreenState extends State<ReportHelperScreen> {
@@ -45,35 +51,36 @@ class _ReportHelperScreenState extends State<ReportHelperScreen> {
                 ],
               ),
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                     CardButton(
                       imagePath: 'assets/images/sadFaceColor.png',
                       title: '딥페이크',
                       subtitle: 'AI로 얼굴·음성을 조작해 사기·허위 정보 유포.🚫', 
-                      index: 0,),
+                      onTap: () => navigator(context, 0),
+                      ),
                     CardButton(
                       imagePath: 'assets/images/phoneColor.png',
                       title: '보이스피싱',
                       subtitle: '전화로 금융·공공기관 사칭, 돈·정보 요구 ⚠️', 
-                      index: 1,),
+                      onTap: () => navigator(context, 1)),
               ],
             ),
             const SizedBox(height: 16,),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                     CardButton(
                       imagePath: 'assets/images/smishingColor.png',
                       title: '스미싱',
                       subtitle: '문자로 악성 링크 유도, 개인정보 탈취 📩', 
-                      index: 2,),
+                      onTap: () => navigator(context, 2)),
                     CardButton(
                       imagePath: 'assets/images/personalColor.png',
                       title: '개인정보 유출',
                       subtitle: '해킹·피싱으로 개인 정보가 노출 🛑', 
-                      index: 3,),
+                      onTap: () => navigator(context, 3)),
               ],
             ),
             const SizedBox(height: 17,)
