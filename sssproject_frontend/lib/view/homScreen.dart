@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/const/colors.dart';
+import 'package:sssproject_frontend/view/cardButton.dart';
 
 class HomeScreen extends StatefulWidget {
   final Function(int) changeTab;
@@ -48,34 +49,32 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                    cardButton(
-                      'assets/images/shieldSearchColor.png',
-                      'URL/번호 검색','알 수 없는 URL이나\n번호를 검색할 수 있어요.', 
-                      0,
-                      widget.changeTab),
-                    cardButton(
-                      'assets/images/unlockColor.png',
-                      '권한설정',
-                      '어플이 사용하는 권한을 한눈에 볼 수 있어요.', 
-                      1,
-                      widget.changeTab),
+                    CardButton(
+                      imagePath: 'assets/images/shieldSearchColor.png',
+                      title: 'URL/번호 검색',
+                      subtitle: '알 수 없는 URL이나\n번호를 검색할 수 있어요.', 
+                      onTap:() => widget.changeTab(1),),
+                    CardButton(
+                      imagePath: 'assets/images/unlockColor.png',
+                      title: '권한설정',
+                      subtitle: '어플이 사용하는 권한을 한눈에 볼 수 있어요.', 
+                      onTap:() => widget.changeTab(2)),
               ],
             ),
             const SizedBox(height: 16,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                    cardButton(
-                      'assets/images/scanBarcodeColor.png',
-                      '노이즈 추가','사진에 노이즈를 추가하여 딥페이크를 방지해요.', 
-                      3,
-                      widget.changeTab),
-                    cardButton(
-                      'assets/images/alarmColor.png',
-                      '신고 방법',
-                      '문제가 생겼을 때\n대처방법을 알아보아요.', 
-                      4,
-                      widget.changeTab),
+                    CardButton(
+                      imagePath: 'assets/images/scanBarcodeColor.png',
+                      title: '노이즈 추가',
+                      subtitle: '사진에 노이즈를 추가하여 딥페이크를 방지해요.', 
+                      onTap: () => widget.changeTab(3)),
+                    CardButton(
+                      imagePath: 'assets/images/alarmColor.png',
+                      title: '신고 방법',
+                      subtitle: '문제가 생겼을 때\n대처방법을 알아보아요.', 
+                      onTap: () => widget.changeTab(4)),
               ],
             ),
             const SizedBox(height: 17,)
@@ -85,35 +84,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-Widget cardButton(String imagePath, String title, String subtitle, int index, Function(int) changeTab) {
-  return SizedBox(
-    height: 255,
-    width: 162,
-    child: Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-      color: backgroundWhite,
-      elevation: 10.0,
-        child: InkWell(
-          onTap: () => changeTab(index),
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 32,),
-              Image.asset(imagePath, width: 60, height: 60,),
-              const SizedBox(height: 30,),
-              Text(title, 
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-              const SizedBox(height: 5,),
-              Text(subtitle, 
-              style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: textGray, height: 1.8),),
-            ],
-            ),
-          ),
-        ),
-    ),
-  );
-}
-
