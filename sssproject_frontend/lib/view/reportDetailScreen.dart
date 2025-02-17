@@ -1,5 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/const/colors.dart';
+import 'package:sssproject_frontend/model/Report.dart';
+import 'package:sssproject_frontend/repository/reportService.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ReportDetailScreen extends StatefulWidget {
@@ -12,6 +15,28 @@ class ReportDetailScreen extends StatefulWidget {
 }
 
 class _ReportDetailScreenState extends State<ReportDetailScreen> {
+  final dio = Dio();
+  List<Report> reportData = [];
+  ReportService reportService  = ReportService();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadReport();
+  } 
+
+  Future<void> _loadReport() async {
+    try{
+      final data = await reportService.getReportData();
+      setState(() {
+        reportData = data;
+      });
+    } catch(e) {
+      print('Error loading Board infomation: $e');
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +82,6 @@ class _ReportDetailScreenState extends State<ReportDetailScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('스미싱이란?\nSMS(문자 메시지)와 피싱(Phishing)의 합성어로,\n문자 메시지를 이용한 금융 사기 수법'),
                           Text('내용')
                         ],
                       ),
