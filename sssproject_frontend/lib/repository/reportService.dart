@@ -1,14 +1,15 @@
 import 'package:dio/dio.dart';
+import 'package:sssproject_frontend/const/crime.dart';
 import 'package:sssproject_frontend/const/dio.dart';
 import 'package:sssproject_frontend/model/Report.dart';
 
-class ReportService {
+class ReportService{
   final dio = Dio();
   
-  Future<Report> getReportData() async{
+  Future<Report> getReportData(int index) async{
     Response response;
     try{
-      String url = '$BASE_URL/report/info/voicephishing';
+      String url = '$BASE_URL/report/info/${crime[index]}';
       response = await dio.get(url);
       print("Response Data: ${response.data}");
 

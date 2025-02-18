@@ -28,7 +28,7 @@ class _ReportDetailScreenState extends State<ReportDetailScreen> {
 
   Future<void> _loadReport() async {
     try{
-      final data = await reportService.getReportData();
+      final data = await reportService.getReportData(widget.index);
       setState(() {
         reportData = data;
       });

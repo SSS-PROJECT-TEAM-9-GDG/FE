@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/const/colors.dart';
 
 const TextStyle bigTitleStyle = TextStyle(
-  fontSize: 23,
+  fontSize: 22,
   fontWeight: FontWeight.w900,
 );
 
 const TextStyle titleStyle = TextStyle(
-  fontSize: 17,
+  fontSize: 16,
   fontWeight: FontWeight.w600,
 );
 
 const TextStyle bodyStyle = TextStyle(
-  fontSize: 14,
+  fontSize: 13.5,
   fontWeight: FontWeight.w200,
   height: 1.7
 );
