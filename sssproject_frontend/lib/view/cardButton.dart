@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/const/colors.dart';
+import 'package:sssproject_frontend/const/textstyle.dart';
 import 'package:sssproject_frontend/view/reportDetailScreen.dart';
 
 class CardButton extends StatelessWidget {
   final String imagePath;
   final String title;
   final String subtitle;
-  final VoidCallback onTap; 
+  final VoidCallback onTap;
 
   const CardButton({
     super.key,
@@ -15,12 +16,14 @@ class CardButton extends StatelessWidget {
     required this.subtitle,
     required this.onTap
   });
-
+  
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     return SizedBox(
-      height: 255,
-      width: 162,
+      height: size.height * 0.28,
+      width: size.width * 0.42,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         color: backgroundWhite,
@@ -30,14 +33,12 @@ class CardButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 32),
-                Image.asset(imagePath, width: 60, height: 60),
-                const SizedBox(height: 30),
-                Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                const SizedBox(height: 5),
-                Text(subtitle, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: textGray, height: 1.8)),
+                Image.asset(imagePath, width: size.height * 0.067, height: size.height * 0.067),
+                Text(title, style: cardTitleStyle),
+                Text(subtitle, style: cardDecStyle),
               ],
             ),
           ),

@@ -1,17 +1,19 @@
 import 'package:dio/dio.dart';
+import 'package:sssproject_frontend/const/dio.dart';
 import 'package:sssproject_frontend/model/Report.dart';
 
 class ReportService {
   final dio = Dio();
   
-  Future<List<Report>> getReportData() async{
+  Future<Report> getReportData() async{
     Response response;
     try{
-      String url = 'http://43.200.169.250:8080/report/info/voicephishing';
+      String url = '$BASE_URL/report/info/voicephishing';
       response = await dio.get(url);
+      print("Response Data: ${response.data}");
+
       if(response.statusCode == 200) {
-        final List<dynamic> jsonData = response.data;
-        return jsonData.map((report) => Report.fromJson(report)).toList(); 
+        return Report.fromJson(response.data);
       } else {
         throw Exception('Fail to load data');
       }
