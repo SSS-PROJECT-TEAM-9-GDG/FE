@@ -10,15 +10,15 @@ class BackPressProvider with ChangeNotifier {
     DateTime now = DateTime.now();
     if (lastBackPressTime == null || now.difference(lastBackPressTime!) > const Duration(seconds: 2)) {
       lastBackPressTime = now;
-      isDialog = true; // 처음 뒤로가기 눌렀을 때만
-      notifyListeners(); // 상태 변경 알림
+      isDialog = true;
+      notifyListeners();
     } else {
-      SystemNavigator.pop(); // 앱 종료
+      SystemNavigator.pop();
     }
   }
 
   void showDialogEnded() {
     isDialog = false;
-    notifyListeners(); // 상태 변경 알림
+    notifyListeners();
   }
 }
