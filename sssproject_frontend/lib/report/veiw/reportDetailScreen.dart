@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/const/colors.dart';
 import 'package:sssproject_frontend/const/crime.dart';
 import 'package:sssproject_frontend/const/textstyle.dart';
-import 'package:sssproject_frontend/model/Report.dart';
-import 'package:sssproject_frontend/repository/reportService.dart';
+import 'package:sssproject_frontend/report/model/Report.dart';
+import 'package:sssproject_frontend/report/repository/reportService.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ReportDetailScreen extends StatefulWidget {

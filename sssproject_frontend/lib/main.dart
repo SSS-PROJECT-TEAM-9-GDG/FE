@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sssproject_frontend/provider/backPressProvider.dart';
-import 'package:sssproject_frontend/view/customNavigationBar.dart';
+import 'package:sssproject_frontend/util/provider/backPressProvider.dart';
+import 'package:sssproject_frontend/util/view/customNavigationBar.dart';
 
 void main() {
   runApp(
@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Pretendard'),
       home: const customNavigationBar(),
     );}

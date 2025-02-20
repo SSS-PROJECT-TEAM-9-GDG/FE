@@ -3,9 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:sssproject_frontend/const/colors.dart';
-import 'package:sssproject_frontend/provider/backPressProvider.dart';
-import 'package:sssproject_frontend/view/homScreen.dart';
-import 'package:sssproject_frontend/view/reportHelperScreen.dart';
+import 'package:sssproject_frontend/util/provider/backPressProvider.dart';
+import 'package:sssproject_frontend/home/view/homScreen.dart';
+import 'package:sssproject_frontend/report/veiw/reportHelperScreen.dart';
 
 class customNavigationBar extends StatefulWidget {
   const customNavigationBar({super.key});

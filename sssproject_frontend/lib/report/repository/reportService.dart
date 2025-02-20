@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:sssproject_frontend/const/crime.dart';
 import 'package:sssproject_frontend/const/dio.dart';
-import 'package:sssproject_frontend/model/Report.dart';
+import 'package:sssproject_frontend/report/model/Report.dart';
 
 class ReportService{
   final dio = Dio();

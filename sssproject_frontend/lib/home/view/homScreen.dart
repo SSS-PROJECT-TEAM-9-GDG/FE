@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/const/colors.dart';
 import 'package:sssproject_frontend/const/textstyle.dart';
-import 'package:sssproject_frontend/view/cardButton.dart';
+import 'package:sssproject_frontend/util/view/cardButton.dart';
 
 class HomeScreen extends StatefulWidget {
   final Function(int) changeTab;

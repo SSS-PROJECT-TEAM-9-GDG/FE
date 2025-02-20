@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/const/colors.dart';
 import 'package:sssproject_frontend/const/textstyle.dart';
-import 'package:sssproject_frontend/view/reportDetailScreen.dart';
+import 'package:sssproject_frontend/report/veiw/reportDetailScreen.dart';
 
 class CardButton extends StatelessWidget {
   final String imagePath;
