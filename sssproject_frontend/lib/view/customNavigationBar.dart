@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 import 'package:sssproject_frontend/const/colors.dart';
+import 'package:sssproject_frontend/provider/backPressProvider.dart';
 import 'package:sssproject_frontend/view/homScreen.dart';
 import 'package:sssproject_frontend/view/reportHelperScreen.dart';
 
@@ -13,19 +16,19 @@ class customNavigationBar extends StatefulWidget {
 
 class _customNavigationBarState extends State<customNavigationBar> with TickerProviderStateMixin{
   late TabController _tabController;
-  int _index = 2 ;
+  int _index = 2;
 
   @override
   void initState() {
-  super.initState();
-
-  _tabController = TabController(length: _navItems.length, vsync: this, initialIndex: _index);
-  _tabController.addListener(tabListener);
+    super.initState();
+    _tabController = TabController(length: _navItems.length, vsync: this, initialIndex: _index);
+    _tabController.addListener(tabListener);
   }
 
   @override
   void dispose() {
     _tabController.removeListener(tabListener);
+    _tabController.dispose();
     super.dispose();
   }
 
@@ -38,84 +41,95 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
   void changeTab(int index) {
     _tabController.animateTo(index);
   }
-  
+
   @override
   Widget build(BuildContext context) {
-    bool isDialog = true;
+    return Consumer<BackPressProvider>(
+      builder: (context, backPressProvider, child) {
+        return PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (didPop, result) async {
+            if (didPop) return;
 
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (didPop, result) async{
-        if (isDialog) {
-          isDialog = false;
-          const msg = "뒤로가기 버튼을 한 번 더 누르면 종료돼요.";
-          Fluttertoast.showToast(msg: msg).then((value){
-            isDialog = true;
+            if (!backPressProvider.isDialog) {
+              backPressProvider.onBackPress();
+
+              if (backPressProvider.isDialog) {
+                Fluttertoast.showToast(
+                  msg: "뒤로가기 버튼을 한 번 더 누르면 종료돼요.",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  backgroundColor: Colors.black.withOpacity(0.5),
+                  textColor: Colors.white,
+                  fontSize: 16.0,
+                ).then((_) {
+                  backPressProvider.showDialogEnded();
+                });
+              }
+            }
           },
-          );
-        }
-      },
-      
-      child: Scaffold(
-        bottomNavigationBar: Container(
-          decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: textGray.withOpacity(0.2),
-              blurRadius: 15,
-              offset: const Offset(0, -4),
-              ),
-            ],
-          ),
-            child: Stack(
-            children : [
-              BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              selectedItemColor: textBlack,
-              unselectedItemColor: textGray,
-              onTap: (int index) {
-                changeTab(index);
-              },
-              currentIndex: _index,
-                items: _navItems.map((item) {
-                  return BottomNavigationBarItem(
-                    icon: Icon(
-                      _index == item.index ? item.activeIcon : item.inactiveIcon,
-                      size: 30,
-                      weight: 1.0,
-                    ),
-                    label: item.label,
-                  );
-                }).toList(),
-                showUnselectedLabels: true,
-              ),
-              Positioned(
-                top: 0,
-                left: MediaQuery.of(context).size.width / _navItems.length * _index + 12,
-                child: Container(
-                  width: 56,
-                  height: 3,
-                  decoration: BoxDecoration(
-                    color: darkBlue,
-                    borderRadius: BorderRadius.circular(2),
+
+          child: Scaffold(
+            bottomNavigationBar: Container(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: textGray.withOpacity(0.2),
+                    blurRadius: 15,
+                    offset: const Offset(0, -4),
                   ),
-                ),
+                ],
               ),
-            ],
+              child: Stack(
+                children: [
+                  BottomNavigationBar(
+                    type: BottomNavigationBarType.fixed,
+                    selectedItemColor: textBlack,
+                    unselectedItemColor: textGray,
+                    onTap: (int index) {
+                      changeTab(index);
+                    },
+                    currentIndex: _index,
+                    items: _navItems.map((item) {
+                      return BottomNavigationBarItem(
+                        icon: Icon(
+                          _index == item.index ? item.activeIcon : item.inactiveIcon,
+                          size: 30,
+                          weight: 1.0,
+                        ),
+                        label: item.label,
+                      );
+                    }).toList(),
+                    showUnselectedLabels: true,
+                  ),
+                  Positioned(
+                    top: 0,
+                    left: MediaQuery.of(context).size.width / _navItems.length * _index + 12,
+                    child: Container(
+                      width: 56,
+                      height: 3,
+                      decoration: BoxDecoration(
+                        color: darkBlue,
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            body: TabBarView(
+              controller: _tabController,
+              children: [
+                const Center(child: Text('검색페이지')),
+                const Center(child: Text('권한설정')),
+                HomeScreen(changeTab: changeTab),
+                const Center(child: Text('이미지 노이즈')),
+                const ReportHelperScreen(),
+              ],
+            ),
           ),
-        ),
-      
-        body: TabBarView(
-          controller: _tabController,
-          children: [
-            const Center(child: Text('검색페이지'),),
-            const Center(child: Text('권한설정'),),
-            HomeScreen(changeTab: changeTab),
-            const Center(child: Text('이미지 노이즈'),),
-            const ReportHelperScreen(),
-          ],
-        ),
-      ),
+        );
+      },
     );
   }
 }
