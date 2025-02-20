@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/const/colors.dart';
 import 'package:sssproject_frontend/const/crime.dart';
+import 'package:sssproject_frontend/const/images.dart';
 import 'package:sssproject_frontend/const/textstyle.dart';
 import 'package:sssproject_frontend/report/model/Report.dart';
 import 'package:sssproject_frontend/report/repository/reportService.dart';
@@ -66,7 +67,7 @@ class _ReportDetailScreenState extends State<ReportDetailScreen> {
         child: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/backgroundSquare.png'),
+              image: AssetImage(backgroundCurve),
               fit: BoxFit.cover
             )
           ),
@@ -81,10 +82,10 @@ class _ReportDetailScreenState extends State<ReportDetailScreen> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                      Image.asset('assets/images/goormCharactor.png', width: size.height*0.166, height: size.height*0.166,),
+                      Image.asset(goormCharactor, width: size.height*0.166, height: size.height*0.166,),
                       Align(
                         alignment: Alignment.topCenter,
-                        child: Image.asset('assets/images/sheildCharactor.png', width: size.height*0.057, height: size.height*0.057,)
+                        child: Image.asset(sheildCharactor, width: size.height*0.057, height: size.height*0.057,)
                         )
                       ]
                     ),

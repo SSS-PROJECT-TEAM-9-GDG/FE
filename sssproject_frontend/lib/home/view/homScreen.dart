@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/const/colors.dart';
+import 'package:sssproject_frontend/const/images.dart';
 import 'package:sssproject_frontend/const/textstyle.dart';
 import 'package:sssproject_frontend/util/view/cardButton.dart';
 
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/backgroundCurve.png'),
+              image: AssetImage(backgroundCurve),
               fit: BoxFit.scaleDown,
               alignment: Alignment(0, 1.0))
           ),
@@ -41,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Image.asset(
-                      'assets/images/goormCharactor.png', 
+                      goormCharactor, 
                       width: size.height * 0.17, 
                       height: size.height * 0.17,
                     ),
@@ -54,12 +55,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                         CardButton(
-                          imagePath: 'assets/images/shieldSearchColor.png',
+                          imagePath: shieldSearchColor,
                           title: 'URL/번호 검색',
                           subtitle: '알 수 없는 URL이나\n번호를 검색해봐요.🔎', 
                           onTap:() => widget.changeTab(0),),
                         CardButton(
-                          imagePath: 'assets/images/unlockColor.png',
+                          imagePath: unlockColor,
                           title: '권한설정',
                           subtitle: '어플이 사용하는 권한을 한눈에 볼 수 있어요.👀', 
                           onTap:() => widget.changeTab(1)),
@@ -72,12 +73,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                         CardButton(
-                          imagePath: 'assets/images/scanBarcodeColor.png',
+                          imagePath: scanBarcodeColor,
                           title: '노이즈 추가',
                           subtitle: '사진에 노이즈를 추가하여 딥페이크를 방지해요.🙅‍♀️', 
                           onTap: () => widget.changeTab(3)),
                         CardButton(
-                          imagePath: 'assets/images/alarmColor.png',
+                          imagePath: alarmColor,
                           title: '신고 방법',
                           subtitle: '문제가 생겼을 때 대처방법을 알아볼 수 있어요.💡', 
                           onTap: () => widget.changeTab(4)),

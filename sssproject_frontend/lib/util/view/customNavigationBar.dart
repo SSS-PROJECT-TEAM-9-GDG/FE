@@ -7,6 +7,53 @@ import 'package:sssproject_frontend/util/provider/backPressProvider.dart';
 import 'package:sssproject_frontend/home/view/homScreen.dart';
 import 'package:sssproject_frontend/report/veiw/reportHelperScreen.dart';
 
+class NavItem {
+  final int index;
+  final IconData activeIcon;
+  final IconData inactiveIcon;
+  final String label;
+ 
+  const NavItem({
+    required this.index,
+    required this.activeIcon,
+    required this.inactiveIcon,
+    required this.label,
+  });
+}
+
+const _navItems = [
+  NavItem(
+    index: 0,
+    activeIcon: Icons.policy_outlined,
+    inactiveIcon: Icons.policy_outlined,
+    label: '검색',
+  ),
+  NavItem(
+    index: 1,
+    activeIcon: Icons.lock_outline,
+    inactiveIcon: Icons.lock_outline,
+    label: '권한설정',
+  ),
+  NavItem(
+    index: 2,
+    activeIcon: Icons.home_outlined,
+    inactiveIcon: Icons.home_outlined,
+    label: '홈',
+  ),
+  NavItem(
+    index: 3,
+    activeIcon: Icons.crop_free,
+    inactiveIcon: Icons.crop_free,
+    label: '노이즈 추가',
+  ),
+    NavItem(
+    index: 4,
+    activeIcon: Icons.warning_amber,
+    inactiveIcon: Icons.warning_amber,
+    label: '신고',
+  ),
+];
+
 class customNavigationBar extends StatefulWidget {
   const customNavigationBar({super.key});
 
@@ -133,50 +180,3 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
     );
   }
 }
-
-class NavItem {
-  final int index;
-  final IconData activeIcon;
-  final IconData inactiveIcon;
-  final String label;
- 
-  const NavItem({
-    required this.index,
-    required this.activeIcon,
-    required this.inactiveIcon,
-    required this.label,
-  });
-}
-
-const _navItems = [
-  NavItem(
-    index: 0,
-    activeIcon: Icons.policy_outlined,
-    inactiveIcon: Icons.policy_outlined,
-    label: '검색',
-  ),
-  NavItem(
-    index: 1,
-    activeIcon: Icons.lock_outline,
-    inactiveIcon: Icons.lock_outline,
-    label: '권한설정',
-  ),
-  NavItem(
-    index: 2,
-    activeIcon: Icons.home_outlined,
-    inactiveIcon: Icons.home_outlined,
-    label: '홈',
-  ),
-  NavItem(
-    index: 3,
-    activeIcon: Icons.crop_free,
-    inactiveIcon: Icons.crop_free,
-    label: '노이즈 추가',
-  ),
-    NavItem(
-    index: 4,
-    activeIcon: Icons.warning_amber,
-    inactiveIcon: Icons.warning_amber,
-    label: '신고',
-  ),
-];
