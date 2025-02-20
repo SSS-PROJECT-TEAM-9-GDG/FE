@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/const/colors.dart';
+import 'package:sssproject_frontend/const/crime.dart';
 import 'package:sssproject_frontend/const/textstyle.dart';
 import 'package:sssproject_frontend/model/Report.dart';
 import 'package:sssproject_frontend/repository/reportService.dart';
@@ -53,7 +54,7 @@ class _ReportDetailScreenState extends State<ReportDetailScreen> {
       preferredSize: const Size.fromHeight(60),
       child: AppBar(
             centerTitle: true,
-            title: Text(reportData!.title, style: appBarStyle,),
+            title: Text(crimeName[widget.index], style: appBarStyle,),
             leading: IconButton(
               icon: const Icon(Icons.arrow_back_ios),
               onPressed: () {
@@ -115,7 +116,7 @@ class _ReportDetailScreenState extends State<ReportDetailScreen> {
                                 ),
                               ),
                               const SizedBox(height: 4,),
-                              Text('[${reportData!.title}예방법]', style: titleStyle,),
+                              Text('[${crimeName[widget.index]}예방법]', style: titleStyle,),
                               IntrinsicHeight(
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,

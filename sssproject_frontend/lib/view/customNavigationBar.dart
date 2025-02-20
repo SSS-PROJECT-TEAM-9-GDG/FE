@@ -40,64 +40,73 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
   
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: textGray.withOpacity(0.2),
-            blurRadius: 15,
-            offset: const Offset(0, -4),
-            ),
-          ],
-        ),
-          child: Stack(
-          children : [
-            BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: textBlack,
-            unselectedItemColor: textGray,
-            onTap: (int index) {
-              changeTab(index);
-            },
-            currentIndex: _index,
-              items: _navItems.map((item) {
-                return BottomNavigationBarItem(
-                  icon: Icon(
-                    _index == item.index ? item.activeIcon : item.inactiveIcon,
-                    size: 30,
-                    weight: 1.0,
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (bool didPop) {
+        if (didPop) {
+          return;
+        }
+      },
+      
+      child: Scaffold(
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: textGray.withOpacity(0.2),
+              blurRadius: 15,
+              offset: const Offset(0, -4),
+              ),
+            ],
+          ),
+            child: Stack(
+            children : [
+              BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              selectedItemColor: textBlack,
+              unselectedItemColor: textGray,
+              onTap: (int index) {
+                changeTab(index);
+              },
+              currentIndex: _index,
+                items: _navItems.map((item) {
+                  return BottomNavigationBarItem(
+                    icon: Icon(
+                      _index == item.index ? item.activeIcon : item.inactiveIcon,
+                      size: 30,
+                      weight: 1.0,
+                    ),
+                    label: item.label,
+                  );
+                }).toList(),
+                showUnselectedLabels: true,
+              ),
+              Positioned(
+                top: 0,
+                left: MediaQuery.of(context).size.width / _navItems.length * _index + 12,
+                child: Container(
+                  width: 56,
+                  height: 3,
+                  decoration: BoxDecoration(
+                    color: darkBlue,
+                    borderRadius: BorderRadius.circular(2),
                   ),
-                  label: item.label,
-                );
-              }).toList(),
-              showUnselectedLabels: true,
-            ),
-            Positioned(
-              top: 0,
-              left: MediaQuery.of(context).size.width / _navItems.length * _index + 12,
-              child: Container(
-                width: 56,
-                height: 3,
-                decoration: BoxDecoration(
-                  color: darkBlue,
-                  borderRadius: BorderRadius.circular(2),
                 ),
               ),
-            ),
+            ],
+          ),
+        ),
+      
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            const Center(child: Text('검색페이지'),),
+            const Center(child: Text('권한설정'),),
+            HomeScreen(changeTab: changeTab),
+            const Center(child: Text('이미지 노이즈'),),
+            const ReportHelperScreen(),
           ],
         ),
-      ),
-
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          const Center(child: Text('검색페이지'),),
-          const Center(child: Text('권한설정'),),
-          HomeScreen(changeTab: changeTab),
-          const Center(child: Text('이미지 노이즈'),),
-          const ReportHelperScreen(),
-        ],
       ),
     );
   }

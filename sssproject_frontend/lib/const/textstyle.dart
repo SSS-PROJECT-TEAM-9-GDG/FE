@@ -36,5 +36,5 @@ const TextStyle cardDecStyle = TextStyle(
 
 const TextStyle appBarStyle = TextStyle(
   fontSize: 25,
-  fontWeight: FontWeight.w600
+  fontWeight: FontWeight.normal
 );
