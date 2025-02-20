@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sssproject_frontend/const/colors.dart';
 import 'package:sssproject_frontend/view/homScreen.dart';
 import 'package:sssproject_frontend/view/reportHelperScreen.dart';
@@ -40,11 +41,18 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
   
   @override
   Widget build(BuildContext context) {
+    bool isDialog = true;
+
     return PopScope(
       canPop: false,
-      onPopInvoked: (bool didPop) {
-        if (didPop) {
-          return;
+      onPopInvokedWithResult: (didPop, result) async{
+        if (isDialog) {
+          isDialog = false;
+          const msg = "뒤로가기 버튼을 한 번 더 누르면 종료돼요.";
+          Fluttertoast.showToast(msg: msg).then((value){
+            isDialog = true;
+          },
+          );
         }
       },
       

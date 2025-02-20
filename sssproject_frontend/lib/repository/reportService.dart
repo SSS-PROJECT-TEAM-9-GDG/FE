@@ -11,7 +11,6 @@ class ReportService{
     try{
       String url = '$BASE_URL/report/info/${crime[index]}';
       response = await dio.get(url);
-      print("Response Data: ${response.data}");
 
       if(response.statusCode == 200) {
         return Report.fromJson(response.data);
