@@ -5,7 +5,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key}); 
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 }
 
 class URLSearchScreen extends StatefulWidget {
-  const URLSearchScreen({super.key}); 
+  const URLSearchScreen({super.key});
 
   @override
   State<URLSearchScreen> createState() => _URLSearchScreenState();
@@ -77,7 +77,7 @@ class _URLSearchScreenState extends State<URLSearchScreen> {
                 filled: true,
                 fillColor: Colors.white,
               ),
-              // 재입력시 기존 검색 결과를 초기화 (URL 재검색)
+              // 재입력시 기존 검색 결과 초기화 (URL 재검색)
               onChanged: (value) {
                 setState(() {
                   isValid = false;
@@ -110,12 +110,27 @@ class _URLSearchScreenState extends State<URLSearchScreen> {
                   ],
                 ),
                 child: Column(
-                  children: const [
-                    Icon(Icons.check_circle, color: Colors.green, size: 50),
-                    SizedBox(height: 10),
-                    Text(
-                      "안전한 URL입니다!",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/character.png',
+                      width: 210,
+                      height: 180,
+                    ),
+                    const SizedBox(height: 10),
+                    const SizedBox(height: 10),
+                    const Text(
+                      "안심할 수 있는 URL이에요!",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                      "최근 3개월 내에\n3건 이상 접수된 민원이 없어요.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 14),
                     ),
                   ],
                 ),
@@ -127,6 +142,9 @@ class _URLSearchScreenState extends State<URLSearchScreen> {
     );
   }
 }
+
+
+
 
 
 
