@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/const/images.dart';
 import 'package:sssproject_frontend/const/textstyle.dart';
+import 'package:sssproject_frontend/phone/dio/PhoneNumber.dart';
 import 'package:sssproject_frontend/url/model/Url.dart';
 
-Widget urlErrorWidget(BuildContext context) {
+Widget phoneResultWidget(PhoneNumber phoneData, BuildContext context) {
   final Size size = MediaQuery.of(context).size;
 
   return Column(
@@ -32,13 +33,15 @@ Widget urlErrorWidget(BuildContext context) {
                   height: 180,
                 ),
                 const SizedBox(height: 10),
-                const Text(
-                  "🤔 검색할 수 없는 URL이에요!",
+                Text(
+                  phoneData.spam == "" ? "✅ 안심할 수 있는 번호에요!" : "🚫 안전하지 않은 전화번호에요!",
                   style: megaTitleStyle
                 ),
                 const SizedBox(height: 10),
-                const Text(
-                  "올바르게 입력했는지 확인 후\n다시 시도해주세요.",
+                Text(
+                  phoneData.spam == "" ?
+                  "최근 3개월 내에\n3건 이상 접수된 민원이 없어요. " 
+                  : "${phoneData.spamCount}회 이상 신고가 된 번호에요.\n신뢰할 수 없는 전화번호이므로\n주의 해야 해요.",
                   style: resultBodyStyle,
                   textAlign: TextAlign.center,
                 ),

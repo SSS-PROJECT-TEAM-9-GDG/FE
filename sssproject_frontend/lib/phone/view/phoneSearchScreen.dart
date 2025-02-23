@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/const/colors.dart';
 import 'package:sssproject_frontend/const/textstyle.dart';
-import 'package:sssproject_frontend/url/model/Url.dart';
-import 'package:sssproject_frontend/url/repository/urlSearchService.dart';
+import 'package:sssproject_frontend/phone/dio/PhoneNumber.dart';
+import 'package:sssproject_frontend/phone/repository/phoneSearchService.dart';
+import 'package:sssproject_frontend/phone/view/phoneResultScreen.dart';
 import 'package:sssproject_frontend/util/view/errorScreen.dart';
-import 'package:sssproject_frontend/url/view/urlResultScreen.dart';
 
-class URLSearchScreen extends StatefulWidget {
-  const URLSearchScreen({super.key});
+class PhoneSearchScreen extends StatefulWidget {
+  const PhoneSearchScreen({super.key});
 
   @override
-  State<URLSearchScreen> createState() => _URLSearchScreenState();
+  State<PhoneSearchScreen> createState() => _PhoneSearchScreenState();
   }
 
-class _URLSearchScreenState extends State<URLSearchScreen> {
-  final TextEditingController _urlController = TextEditingController();
+class _PhoneSearchScreenState extends State<PhoneSearchScreen> {
+  final TextEditingController _phoneController = TextEditingController();
   String? _errorText;
   bool isValid = false;
-  UrlSearchService urlSearchService = UrlSearchService();
-  Future<Url>? urlData;
+  PhoneSearchService phoneSearchService = PhoneSearchService();
+  Future<PhoneNumber>? phoneData;
 
   void validateURL() {
     setState(() {
-      String input = _urlController.text.trim();
+      String input = _phoneController.text.trim();
       if (input.isEmpty) {
-        _errorText = "URL을 입력해주세요.";
+        _errorText = "전화번호를 입력해주세요.";
         isValid = false;
       } else {
         _errorText = null;
@@ -33,17 +33,17 @@ class _URLSearchScreenState extends State<URLSearchScreen> {
     });
   }
 
-  Future<Url> getUrlResult() {
-    if (_urlController.text.trim() == "badurltest.com"){
-      return urlData = Future.value(Url(url: "badurltest.com", maliciousCount: 5, malicious: true));
+  Future<PhoneNumber> getPhoneResult() {
+    if (_phoneController.text.trim() == "01077777777"){
+      return phoneData = Future.value(PhoneNumber(spam: "허위광고", spamCount: 5, cyberCrime: '최근 3개월 내 3건 이상 접수된 민원이 없습니다.'));
     }
-    return urlData = urlSearchService.getUrlData(_urlController.text);
+    return phoneData = phoneSearchService.getPhoneNumberData(_phoneController.text);
   }
 
   @override
   void initState() {
     super.initState();
-    urlData = null;
+    phoneData = null;
   }
 
   @override
@@ -56,7 +56,7 @@ class _URLSearchScreenState extends State<URLSearchScreen> {
         resizeToAvoidBottomInset: false,
         backgroundColor: primaryBlue.withOpacity(0.5),
         appBar: AppBar(
-          title: const Text("URL 검색", style: appBarStyle,),
+          title: const Text("전화번호 검색", style: appBarStyle,),
           centerTitle: true,
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
@@ -68,10 +68,10 @@ class _URLSearchScreenState extends State<URLSearchScreen> {
             children: [
               Container(
                 child: TextField(
-                  controller: _urlController,
-                  keyboardType: TextInputType.url,
+                  controller: _phoneController,
+                  keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
-                    hintText: "URL을 입력해주세요.",
+                    hintText: "전화번호를 입력해주세요.",
                     enabledBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: borderGrey),
                     ),
@@ -100,7 +100,7 @@ class _URLSearchScreenState extends State<URLSearchScreen> {
                   validateURL();
                   if (isValid) {
                     setState(() {
-                      getUrlResult();
+                      getPhoneResult();
                     });
                   }
                 },
@@ -112,16 +112,16 @@ class _URLSearchScreenState extends State<URLSearchScreen> {
               const SizedBox(height: 30),
       
               // FutureBuilder로 비동기 데이터를 처리
-              if (urlData!=null)
-                FutureBuilder<Url>(
-                  future: urlData,
+              if (phoneData!=null)
+                FutureBuilder<PhoneNumber>(
+                  future: phoneData,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const CircularProgressIndicator();
                     } else if (snapshot.hasError) {
                       return errorWidget(context);
                     } else if (snapshot.hasData) {
-                      return urlResultWidget(snapshot.data!, context);
+                      return phoneResultWidget(snapshot.data!, context);
                     } else {
                       return const Text('');
                     }
