@@ -45,11 +45,6 @@ Widget urlResultWidget(Url urldata, BuildContext context) {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),
-                const Text(
-                  "url 안정성 판정은 ~~~api를 통해서 이루어져요.\nurl를 악성으로 판정한 안티바이러스엔진이나 보안 업체의 개수를 제공하고 있어요.",
-                  style: referenceStyle,
-                  textAlign: TextAlign.center,
-                )
               ],
             ),
         ),
