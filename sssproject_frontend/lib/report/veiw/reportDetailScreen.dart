@@ -159,9 +159,10 @@ class _ReportDetailScreenState extends State<ReportDetailScreen> {
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: secondaryBlue,
+                          padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 10),
                         ),
                         onPressed:() async{launchUrl(Uri.parse(reportData?.center ?? ''));}, 
-                        child: const Text('신고 하러 가기', style: TextStyle(color: textBlack, fontWeight: FontWeight.bold))),
+                        child: const Text('신고 하러 가기', style: buttonStyle)),
                   ),
                 ),
                 ],
