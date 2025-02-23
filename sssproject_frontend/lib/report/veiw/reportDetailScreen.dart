@@ -63,11 +63,10 @@ class _ReportDetailScreenState extends State<ReportDetailScreen> {
               },
             ),
           ),),
-      body: SafeArea(
-        child: Container(
+      body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(backgroundCurve),
+              image: AssetImage(backgroundSqure),
               fit: BoxFit.cover
             )
           ),
@@ -170,7 +169,6 @@ class _ReportDetailScreenState extends State<ReportDetailScreen> {
             ),
           ),
         ),
-      ),
     );
   }
 }

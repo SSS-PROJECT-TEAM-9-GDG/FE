@@ -1,4 +1,5 @@
 const String backgroundCurve = 'assets/images/backgroundCurve.png';
+const String backgroundSqure = 'assets/images/backgroundSquare.png';
 const String goormCharactor = 'assets/images/goormCharactor.png';
 const String gooroomCharactor2 = 'assets/images/goormCharactor2.png';
 const String sheildCharactor = 'assets/images/sheildCharactor.png';

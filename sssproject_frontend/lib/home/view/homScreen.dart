@@ -56,13 +56,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                         CardButton(
                           imagePath: shieldSearchColor,
-                          title: 'URL/번호 검색',
-                          subtitle: '알 수 없는 URL이나\n번호를 검색해봐요.🔎', 
+                          title: 'URL검색',
+                          subtitle: '알 수 없는 URL을 검색할 수 있어요.🔎', 
                           onTap:() => widget.changeTab(0),),
                         CardButton(
                           imagePath: unlockColor,
-                          title: '권한설정',
-                          subtitle: '어플이 사용하는 권한을 한눈에 볼 수 있어요.👀', 
+                          title: '전화번호 검색',
+                          subtitle: '알 수 없는 전화번호를 검색할 수 있어요.🔎', 
                           onTap:() => widget.changeTab(1)),
                   ],
                 ),

@@ -27,13 +27,13 @@ const _navItems = [
     index: 0,
     activeIcon: Icons.policy_outlined,
     inactiveIcon: Icons.policy_outlined,
-    label: '검색',
+    label: 'URL검색',
   ),
   NavItem(
     index: 1,
     activeIcon: Icons.lock_outline,
     inactiveIcon: Icons.lock_outline,
-    label: '권한설정',
+    label: '전화번호 검색',
   ),
   NavItem(
     index: 2,
@@ -169,7 +169,7 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
               controller: _tabController,
               children: [
                 const URLSearchScreen(),
-                const Center(child: Text('권한설정')),
+                const Center(child: Text('전화번호 검색')),
                 HomeScreen(changeTab: changeTab),
                 const Center(child: Text('이미지 노이즈')),
                 const ReportHelperScreen(),
