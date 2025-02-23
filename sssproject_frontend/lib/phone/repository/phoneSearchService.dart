@@ -1,21 +1,28 @@
-import 'package:dio/dio.dart';
-import 'package:sssproject_frontend/const/dio.dart';
-import 'package:sssproject_frontend/url/model/Url.dart';
+import 'dart:convert';
 
-class UrlSearchService {
-final dio = Dio();
-  
-  Future<Url> getUrlData(String url) async{
+import 'package:dio/dio.dart';
+import 'package:sssproject_frontend/const/crime.dart';
+import 'package:sssproject_frontend/const/dio.dart';
+import 'package:sssproject_frontend/report/model/Report.dart';
+import 'package:sssproject_frontend/phone/dio/PhoneNumber.dart';
+
+class PhoneSearchService{
+  final dio = Dio();
+
+    Future<PhoneNumber> getPhoneNumberData(String phoneNumber) async{
     Response response;
     try{
-      String serverUrl = '$BASE_URL/api/urlcheck/scan';
+      String serverUrl = '$BASE_URL/api/spam/check';
       response = await dio.post(
         serverUrl,
-        data: {'url' : url,}
+        data: {'number' : phoneNumber,}
       );
 
       if(response.statusCode == 200) {
-        return Url.fromJson(response.data);
+        print("phone 전송 선공!");
+        final jsonData = jsonDecode(response.data);
+        print('Response Data: ${jsonData['data']}');
+        return PhoneNumber.fromJson(jsonData['data']);
       } else {
         throw Exception('Fail to load data');
       }
