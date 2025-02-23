@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:sssproject_frontend/const/colors.dart';
+import 'package:sssproject_frontend/url/view/urlSearchScreen.dart';
 import 'package:sssproject_frontend/util/provider/backPressProvider.dart';
 import 'package:sssproject_frontend/home/view/homScreen.dart';
 import 'package:sssproject_frontend/report/veiw/reportHelperScreen.dart';
@@ -167,7 +168,7 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
             body: TabBarView(
               controller: _tabController,
               children: [
-                const Center(child: Text('검색페이지')),
+                const URLSearchScreen(),
                 const Center(child: Text('권한설정')),
                 HomeScreen(changeTab: changeTab),
                 const Center(child: Text('이미지 노이즈')),
