@@ -25,14 +25,14 @@ class NavItem {
 const _navItems = [
   NavItem(
     index: 0,
-    activeIcon: Icons.policy_outlined,
-    inactiveIcon: Icons.policy_outlined,
+    activeIcon: Icons.link,
+    inactiveIcon: Icons.link,
     label: 'URL검색',
   ),
   NavItem(
     index: 1,
-    activeIcon: Icons.lock_outline,
-    inactiveIcon: Icons.lock_outline,
+    activeIcon: Icons.call_outlined,
+    inactiveIcon: Icons.call_outlined,
     label: '전화번호 검색',
   ),
   NavItem(
@@ -118,6 +118,7 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
           },
 
           child: Scaffold(
+            resizeToAvoidBottomInset: false,
             bottomNavigationBar: Container(
               decoration: BoxDecoration(
                 boxShadow: [

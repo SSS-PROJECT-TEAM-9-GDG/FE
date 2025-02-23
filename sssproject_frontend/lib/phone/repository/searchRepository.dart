@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:sssproject_frontend/const/crime.dart';
 import 'package:sssproject_frontend/const/dio.dart';
 import 'package:sssproject_frontend/report/model/Report.dart';
-import 'package:sssproject_frontend/search/dio/PhoneNumber.dart';
+import 'package:sssproject_frontend/phone/dio/PhoneNumber.dart';
 
 class SearchService{
   final dio = Dio();

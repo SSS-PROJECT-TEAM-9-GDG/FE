@@ -4,8 +4,8 @@ const String goormCharactor = 'assets/images/goormCharactor.png';
 const String gooroomCharactor2 = 'assets/images/goormCharactor2.png';
 const String sheildCharactor = 'assets/images/sheildCharactor.png';
 
-const String shieldSearchColor = 'assets/images/shieldSearchColor.png';
-const String unlockColor = 'assets/images/unlockColor.png';
+const String linkColor = 'assets/images/linkColor.png';
+const String callSlash = 'assets/images/callSlashColor.png';
 const String scanBarcodeColor = 'assets/images/scanBarcodeColor.png';
 const String alarmColor = 'assets/images/alarmColor.png';
 

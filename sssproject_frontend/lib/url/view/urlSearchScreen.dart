@@ -53,6 +53,7 @@ class _URLSearchScreenState extends State<URLSearchScreen> {
         FocusManager.instance.primaryFocus?.unfocus(); // 키보드 닫기 이벤트
       },
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: primaryBlue.withOpacity(0.5),
         appBar: AppBar(
           title: const Text("URL 검색", style: appBarStyle,),

@@ -55,12 +55,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                         CardButton(
-                          imagePath: shieldSearchColor,
+                          imagePath: linkColor,
                           title: 'URL검색',
                           subtitle: '알 수 없는 URL을 검색할 수 있어요.🔎', 
                           onTap:() => widget.changeTab(0),),
                         CardButton(
-                          imagePath: unlockColor,
+                          imagePath: callSlash,
                           title: '전화번호 검색',
                           subtitle: '알 수 없는 전화번호를 검색할 수 있어요.🔎', 
                           onTap:() => widget.changeTab(1)),
