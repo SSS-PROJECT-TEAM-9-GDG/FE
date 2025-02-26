@@ -11,7 +11,7 @@ class NoiseService {
       return;
     }
 
-    const String url = '$BASE_URL/api/noise/apply';
+    const String url = 'http://localhost:8080/api/noise/apply';
 
     try {
       FormData formData = FormData.fromMap({
