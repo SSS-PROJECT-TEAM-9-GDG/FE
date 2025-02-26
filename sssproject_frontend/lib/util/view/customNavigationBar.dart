@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:sssproject_frontend/const/colors.dart';
+import 'package:sssproject_frontend/noise/view/noiseScreen.dart';
 import 'package:sssproject_frontend/phone/view/phoneSearchScreen.dart';
 import 'package:sssproject_frontend/url/view/urlSearchScreen.dart';
 import 'package:sssproject_frontend/util/provider/backPressProvider.dart';
@@ -173,7 +174,7 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
                 const URLSearchScreen(),
                 const PhoneSearchScreen(),
                 HomeScreen(changeTab: changeTab),
-                const Center(child: Text('이미지 노이즈')),
+                const NoiseEditorScreen(),
                 const ReportHelperScreen(),
               ],
             ),

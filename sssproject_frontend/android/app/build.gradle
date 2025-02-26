@@ -6,6 +6,8 @@ plugins {
 }
 
 android {
+    compileSdkVersion 33  // 최신 버전 사용
+
     namespace = "com.example.sssproject_frontend"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
@@ -28,6 +30,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        targetSdkVersion 33
     }
 
     buildTypes {
