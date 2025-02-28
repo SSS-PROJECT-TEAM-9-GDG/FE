@@ -35,6 +35,16 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  url_launcher: ^6.3.1
+  dio: ^5.8.0+1
+  fluttertoast: ^8.2.12
+  flutter_native_splash: ^2.4.4
+  provider: ^6.0.4
+  image_picker: ^1.0.7  # 갤러리에서 이미지 선택
+  permission_handler: ^11.4.0 # 저장소 및 카메라 권한 요청
+  image: ^4.0.17 # 이미지 노이즈 처리
+  path_provider: ^2.1.2 # 저장 경로 관리
+  flutter_image_compress: ^2.0.4 # 이미지 압축 및 변환
 
 dev_dependencies:
   flutter_test:
@@ -59,10 +69,17 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
-
+  assets:
+    - assets/images/
+  fonts:
+    - family: Pretendard
+      fonts:
+        - asset: assets/fonts/Pretendard-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Pretendard-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Pretendard-Regular.ttf
+          weight: 400
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
@@ -74,9 +91,6 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
