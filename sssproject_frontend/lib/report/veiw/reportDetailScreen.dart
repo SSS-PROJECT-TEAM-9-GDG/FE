@@ -152,13 +152,14 @@ class _ReportDetailScreenState extends State<ReportDetailScreen> {
                         ),
                       ),
                   ),
+                  const SizedBox(height: 5,),
                 Expanded(
                   flex: 1,
                   child: Center(
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: secondaryBlue,
-                          padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 15),
                         ),
                         onPressed:() async{launchUrl(Uri.parse(reportData?.center ?? ''));}, 
                         child: const Text('신고 하러 가기', style: buttonStyle)),

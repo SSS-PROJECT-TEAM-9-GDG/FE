@@ -72,14 +72,21 @@ class _PhoneSearchScreenState extends State<PhoneSearchScreen> {
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
                     hintText: "전화번호를 입력해주세요.",
-                    enabledBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: borderGrey),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: borderGrey),
+                      borderRadius: BorderRadius.circular(15)
                     ),
-                    focusedBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: borderGrey),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: borderGrey),
+                      borderRadius: BorderRadius.circular(15)
                     ),
-                    errorBorder: const OutlineInputBorder(
-                      borderSide: BorderSide(color: errorRed, width: 1.7),
+                    errorBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: errorRed, width: 1.7),
+                      borderRadius: BorderRadius.circular(15)
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: errorRed),
+                      borderRadius: BorderRadius.circular(15)
                     ),
                     errorText: _errorText,
                     filled: true,
@@ -102,11 +109,12 @@ class _PhoneSearchScreenState extends State<PhoneSearchScreen> {
                     setState(() {
                       getPhoneResult();
                     });
+                  FocusScope.of(context).unfocus(); 
                   }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: secondaryBlue,
-                  padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 10),),
+                  padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 15),),
                 child: const Text("검색", style: buttonStyle),
               ),
               const SizedBox(height: 30),
