@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:sssproject_frontend/const/colors.dart';
+import 'package:sssproject_frontend/noise/view/noiseScreen.dart';
 import 'package:sssproject_frontend/phone/view/phoneSearchScreen.dart';
 import 'package:sssproject_frontend/url/view/urlSearchScreen.dart';
 import 'package:sssproject_frontend/util/provider/backPressProvider.dart';
@@ -11,8 +11,8 @@ import 'package:sssproject_frontend/report/veiw/reportHelperScreen.dart';
 
 class NavItem {
   final int index;
-  final IconData activeIcon;
-  final IconData inactiveIcon;
+  final String activeIcon;
+  final String inactiveIcon;
   final String label;
  
   const NavItem({
@@ -26,32 +26,32 @@ class NavItem {
 const _navItems = [
   NavItem(
     index: 0,
-    activeIcon: Icons.link,
-    inactiveIcon: Icons.link,
+    activeIcon: "assets/images/linkLiner.png",
+    inactiveIcon: "assets/images/linkLiner.png",
     label: 'URL검색',
   ),
   NavItem(
     index: 1,
-    activeIcon: Icons.call_outlined,
-    inactiveIcon: Icons.call_outlined,
+    activeIcon: "assets/images/callSlashLiner.png",
+    inactiveIcon: "assets/images/callSlashLiner.png",
     label: '전화번호 검색',
   ),
   NavItem(
     index: 2,
-    activeIcon: Icons.home_outlined,
-    inactiveIcon: Icons.home_outlined,
+    activeIcon: "assets/images/homeLiner.png",
+    inactiveIcon: "assets/images/homeLiner.png",
     label: '홈',
   ),
   NavItem(
     index: 3,
-    activeIcon: Icons.crop_free,
-    inactiveIcon: Icons.crop_free,
+    activeIcon: "assets/images/scanLiner.png",
+    inactiveIcon: "assets/images/scanLiner.png",
     label: '노이즈 추가',
   ),
     NavItem(
     index: 4,
-    activeIcon: Icons.warning_amber,
-    inactiveIcon: Icons.warning_amber,
+    activeIcon: "assets/images/alarmLiner.png",
+    inactiveIcon: "assets/images/alarmLiner.png",
     label: '신고',
   ),
 ];
@@ -93,6 +93,8 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
 
   @override
   Widget build(BuildContext context) {
+  final size = MediaQuery.of(context).size;
+
     return Consumer<BackPressProvider>(
       builder: (context, backPressProvider, child) {
         return PopScope(
@@ -119,6 +121,7 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
           },
 
           child: Scaffold(
+            backgroundColor: backgroundWhite,
             resizeToAvoidBottomInset: false,
             bottomNavigationBar: Container(
               decoration: BoxDecoration(
@@ -133,6 +136,7 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
               child: Stack(
                 children: [
                   BottomNavigationBar(
+                    backgroundColor: backgroundWhite,
                     type: BottomNavigationBarType.fixed,
                     selectedItemColor: textBlack,
                     unselectedItemColor: textGray,
@@ -142,10 +146,18 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
                     currentIndex: _index,
                     items: _navItems.map((item) {
                       return BottomNavigationBarItem(
-                        icon: Icon(
-                          _index == item.index ? item.activeIcon : item.inactiveIcon,
-                          size: 30,
-                          weight: 1.0,
+                        icon:_index == item.index ?
+                         Image.asset(
+                          item.activeIcon,
+                          width: size.width*0.075,
+                          height: size.width*0.075,
+                          color: textBlack,
+                        ):
+                        Image.asset(
+                          item.inactiveIcon,
+                          width: size.width*0.065,
+                          height: size.width*0.065,
+                          color: textGray
                         ),
                         label: item.label,
                       );
@@ -154,7 +166,7 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
                   ),
                   Positioned(
                     top: 0,
-                    left: MediaQuery.of(context).size.width / _navItems.length * _index + 12,
+                    left: size.width / _navItems.length * _index + 12,
                     child: Container(
                       width: 56,
                       height: 3,
@@ -173,7 +185,7 @@ class _customNavigationBarState extends State<customNavigationBar> with TickerPr
                 const URLSearchScreen(),
                 const PhoneSearchScreen(),
                 HomeScreen(changeTab: changeTab),
-                const Center(child: Text('이미지 노이즈')),
+                const NoiseEditorScreen(),
                 const ReportHelperScreen(),
               ],
             ),

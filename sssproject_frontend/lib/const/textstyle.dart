@@ -66,3 +66,13 @@ const TextStyle appBarStyle = TextStyle(
   fontWeight: FontWeight.normal,
   color: textBlack
 );
+
+const TextStyle imageHintStyle = TextStyle(
+  fontSize: 18,
+  color: textGray
+);
+
+const TextStyle imageHintStyle2 = TextStyle(
+  fontSize: 15,
+  color: textGray
+);

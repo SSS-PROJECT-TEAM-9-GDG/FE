@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sssproject_frontend/const/images.dart';
 import 'package:sssproject_frontend/const/textstyle.dart';
 import 'package:sssproject_frontend/phone/dio/PhoneNumber.dart';
-import 'package:sssproject_frontend/url/model/Url.dart';
 
 Widget phoneResultWidget(PhoneNumber phoneData, BuildContext context) {
   final Size size = MediaQuery.of(context).size;

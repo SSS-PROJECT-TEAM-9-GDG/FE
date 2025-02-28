@@ -1,9 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:sssproject_frontend/const/crime.dart';
 import 'package:sssproject_frontend/const/dio.dart';
-import 'package:sssproject_frontend/report/model/Report.dart';
 import 'package:sssproject_frontend/phone/dio/PhoneNumber.dart';
 
 class PhoneSearchService{
@@ -19,9 +17,7 @@ class PhoneSearchService{
       );
 
       if(response.statusCode == 200) {
-        print("phone 전송 선공!");
         final jsonData = jsonDecode(response.data);
-        print('Response Data: ${jsonData['data']}');
         return PhoneNumber.fromJson(jsonData['data']);
       } else {
         throw Exception('Fail to load data');
